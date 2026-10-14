@@ -271,9 +271,9 @@ def run():
 
     today = dt.datetime.now(JST).date()
     start = max(today, dt.date.fromisoformat(os.getenv("START_DATE") or today.isoformat()))
-    end = dt.date.fromisoformat(os.getenv("END_DATE") or (today + dt.timedelta(days=30)).isoformat())
-    if end < start or end > today + dt.timedelta(days=30):
-        raise RuntimeError("END_DATE must be within the next 30 days and after START_DATE")
+    end = dt.date.fromisoformat(os.getenv("END_DATE") or (today + dt.timedelta(days=90)).isoformat())
+    if end < start or end > today + dt.timedelta(days=90):
+        raise RuntimeError("END_DATE must be within the next 90 days and after START_DATE")
 
     issue_number, state = load_state()
     waiting = pending_alert(state)
